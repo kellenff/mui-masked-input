@@ -25,11 +25,13 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'max-len': [2, 120],
     'import-spacing': 0,
     'semi': ['error', 'always'],
     'quotes': ['error', 'single'],
     'jsx-quotes': ['error', 'prefer-double'],
     'arca/import-align': [1, {collapseExtraSpaces: false}],
+    'react/jsx-curly-spacing': [2, {when: 'always'}],
     'react/jsx-first-prop-new-line': [1, 'never'],
     'react/jsx-filename-extension': [2, {'extensions': ['.jsx', '.tsx']}],
     'react-hooks/rules-of-hooks': 'error',
@@ -47,6 +49,14 @@ module.exports = {
         }
       }
     ],
+    'template-curly-spacing': [1, "always"],
+    'object-curly-newline': [2, {
+      "ObjectExpression": "always",
+      "ObjectPattern": {
+        "multiline": true
+      },
+      "ExportDeclaration": {"multiline": true, "minProperties": 3}
+    }]
   },
   overrides: [
     {

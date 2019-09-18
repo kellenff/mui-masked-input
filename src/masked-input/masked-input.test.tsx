@@ -1,6 +1,6 @@
 import { Input }   from '@material-ui/core';
-import React       from 'react';
 import { shallow } from 'enzyme';
+import React       from 'react';
 import MaskedInput from './masked-input';
 
 describe('<MaskedInput/>', () => {
@@ -15,18 +15,66 @@ describe('<MaskedInput/>', () => {
 
     it('should trigger onChange on change event', () => {
       const onChange = jest.fn();
-      const event = {
+      const event    = {
         currentTarget: {
           value: 'food',
         },
       };
 
-      const wrapper = shallow(<MaskedInput value="foo" onChange={onChange} />);
+      const wrapper = shallow(<MaskedInput value="foo" onChange={ onChange } />);
 
       const innerInput = wrapper.find(Input);
       innerInput.simulate('change', event);
 
       expect(onChange).toHaveBeenCalledWith(event);
+    });
+  });
+
+  describe('string mask', () => {
+    it('should pass a masked input value to the child component', () => {
+      const mask  = 'Hello, ';
+      const value = 'World!';
+
+      const wrapper = shallow(<MaskedInput value={ value } mask={ mask } />);
+
+      const innerInput = wrapper.find(Input);
+
+      expect(innerInput.prop('value')).toEqual(mask + value);
+    });
+
+    it('should pass the unmasked value with onValueChange', () => {
+      const mask          = 'Hello, ';
+      const value         = 'World!';
+      const onValueChange = jest.fn();
+      const event         = {
+        currentTarget: {
+          value: `${ mask + value }!`,
+        },
+      };
+
+      const wrapper = shallow(<MaskedInput value={ value } mask={ mask } onValueChange={ onValueChange } />);
+
+      const innerInput = wrapper.find(Input);
+      innerInput.simulate('change', event);
+
+      expect(onValueChange).toHaveBeenCalledWith('World!!');
+    });
+
+    it('should not change the value passed to onValueChange if value is empty and a field is backspaced', () => {
+      const mask          = 'Hello, ';
+      const onValueChange = jest.fn();
+      const event         = {
+        currentTarget: {
+          value: 'Hello,',
+        },
+      };
+
+      const wrapper = shallow(<MaskedInput value="" mask={ mask } onValueChange={ onValueChange } />);
+
+      const innerInput = wrapper.find(Input);
+      innerInput.simulate('change', event);
+
+      expect(onValueChange).toHaveBeenCalledWith('');
     });
   });
 });
