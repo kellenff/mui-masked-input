@@ -1,1 +1,1 @@
-export const hello = () => console.log('Hello, world!');
+export * from './masked-input';

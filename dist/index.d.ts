@@ -1,1 +1,1 @@
-export declare const hello: () => void;
+export * from './masked-input';
