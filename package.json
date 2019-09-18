@@ -16,6 +16,7 @@
   ],
   "author": "Kellen Frodelius-Fujimoto <kellen@kellenfujimoto.com>",
   "license": "(MIT OR Apache-2.0)",
+  "repository": "https://github.com/rakenodiax/mui-masked-input",
   "dependencies": {
     "@material-ui/core": "^4.4.2",
     "react": "^16.9.0"
