@@ -1,0 +1,11 @@
+{
+  "name": "mui-masked-input",
+  "version": "0.1.0",
+  "description": "Masked input fields for Material UI",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["material-ui", "react", "react-component", "material", "input"],
+  "author": "Kellen Frodelius-Fujimoto <kellen@kellenfujimoto.com>",
+  "license": "(MIT OR Apache-2.0)"
+}
