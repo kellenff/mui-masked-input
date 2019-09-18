@@ -35,24 +35,30 @@ const MaskedInput: React.FC<MaskedInputProps> = ({ value, mask, onValueChange, o
   const maskedInput = (mask || '') + value;
   const maskSearch  = mask && new RegExp(`^${ mask }`);
 
+  const handleValueChange = (eventValue: string): void => {
+    if (value === '' && eventValue.length <= (mask || '').length) {
+      onValueChange!(value);
+    }
+
+    const strippedValue = maskSearch
+      ? eventValue.replace(maskSearch, '')
+      : eventValue;
+    onValueChange!(strippedValue);
+  };
+
+  const onInputChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (event): void => {
+    if (onValueChange !== undefined) {
+      handleValueChange(event.currentTarget.value);
+    }
+
+    if (onChange !== undefined) {
+      onChange(event);
+    }
+  };
+
   return (
     <Input value={ maskedInput }
-           onChange={ (event) => {
-             if (onValueChange !== undefined) {
-               if (value === '' && event.currentTarget.value.length <= (mask || '').length) {
-                 onValueChange(value);
-               }
-
-               const strippedValue = maskSearch
-                 ? event.currentTarget.value.replace(maskSearch, '')
-                 : event.currentTarget.value;
-               onValueChange(strippedValue);
-             }
-
-             if (onChange !== undefined) {
-               onChange(event);
-             }
-           } }
+           onChange={ (event) => onInputChange(event) }
            { ...inputProps }
     />
   );
