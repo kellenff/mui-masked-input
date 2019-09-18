@@ -1,11 +1,12 @@
-import { Input } from '@material-ui/core';
-import React     from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { Input }      from '@material-ui/core';
+// eslint-disable-next-line no-unused-vars
+import { InputProps } from '@material-ui/core/Input';
+import React          from 'react';
 
-export interface MaskedInputProps {
-  value: string;
+export interface MaskedInputProps extends InputProps {
   mask?: string;
   onValueChange?: (value: string) => void;
-  onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
 /**
@@ -27,9 +28,10 @@ export interface MaskedInputProps {
  * @param {onValueChange} onValueChange Callback which fires from the child `Input`'s `onChange` callback
  * @param {onChange} onChange Direct pass-through of the `Input`'s `onChange` callback.
  * WARNING: reading the value from this can lead to unexpected behavior if a user backspaces on an empty value
+ * @param inputProps Other properties passed to the Input component
  * @constructor
  */
-const MaskedInput: React.FC<MaskedInputProps> = ({ value, mask, onValueChange, onChange }) => {
+const MaskedInput: React.FC<MaskedInputProps> = ({ value, mask, onValueChange, onChange, ...inputProps }) => {
   const maskedInput = (mask || '') + value;
   const maskSearch  = mask && new RegExp(`^${ mask }`);
 
@@ -51,6 +53,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({ value, mask, onValueChange, o
                onChange(event);
              }
            } }
+           { ...inputProps }
     />
   );
 };

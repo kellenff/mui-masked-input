@@ -77,4 +77,14 @@ describe('<MaskedInput/>', () => {
       expect(onValueChange).toHaveBeenCalledWith('');
     });
   });
+
+  it('should pass a className to Input', () => {
+    const className = 'foo';
+
+    const wrapper = shallow(<MaskedInput value="" className={ className } />);
+
+    const innerInput = wrapper.find(Input);
+
+    expect(innerInput.prop('className')).toEqual(className);
+  });
 });
