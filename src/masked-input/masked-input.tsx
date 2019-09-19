@@ -2,6 +2,7 @@
 import { Input }      from '@material-ui/core';
 // eslint-disable-next-line no-unused-vars
 import { InputProps } from '@material-ui/core/Input';
+// eslint-disable-next-line import/no-unresolved
 import React          from 'react';
 
 export interface MaskedInputProps extends InputProps {
@@ -33,7 +34,7 @@ export interface MaskedInputProps extends InputProps {
  */
 const MaskedInput: React.FC<MaskedInputProps> = ({ value, mask, onValueChange, onChange, ...inputProps }) => {
   const maskedInput = (mask || '') + value;
-  const maskSearch  = mask && new RegExp(`^${ mask }`);
+  const maskSearch  = mask && new RegExp(`^${ mask }?`);
 
   const handleValueChange = (eventValue: string): void => {
     if (value === '' && eventValue.length <= (mask || '').length) {

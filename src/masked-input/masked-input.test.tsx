@@ -1,5 +1,6 @@
 import { Input }   from '@material-ui/core';
 import { shallow } from 'enzyme';
+// eslint-disable-next-line import/no-unresolved
 import React       from 'react';
 import MaskedInput from './masked-input';
 

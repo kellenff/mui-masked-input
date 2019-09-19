@@ -51,7 +51,7 @@ var react_1 = __importDefault(require("react"));
 var MaskedInput = function (_a) {
     var value = _a.value, mask = _a.mask, onValueChange = _a.onValueChange, onChange = _a.onChange, inputProps = __rest(_a, ["value", "mask", "onValueChange", "onChange"]);
     var maskedInput = (mask || '') + value;
-    var maskSearch = mask && new RegExp("^" + mask);
+    var maskSearch = mask && new RegExp("^" + mask + "?");
     var handleValueChange = function (eventValue) {
         if (value === '' && eventValue.length <= (mask || '').length) {
             onValueChange(value);
