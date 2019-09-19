@@ -27,6 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable react/jsx-props-no-spreading */
 var core_1 = require("@material-ui/core");
+// eslint-disable-next-line import/no-unresolved
 var react_1 = __importDefault(require("react"));
 /**
  * @callback onValueChange

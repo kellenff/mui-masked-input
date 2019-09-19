@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@material-ui/core");
 var enzyme_1 = require("enzyme");
+// eslint-disable-next-line import/no-unresolved
 var react_1 = __importDefault(require("react"));
 var masked_input_1 = __importDefault(require("./masked-input"));
 describe('<MaskedInput/>', function () {
